@@ -97,11 +97,11 @@ async function createOrUpdateTask(taskData) {
 }
 
 async function seedDatabase() {
-  if (!process.env.MONGO_URL) {
+  if (!process.env.MONGO_URI) {
     throw new Error('MONGO_URI is missing in server/.env');
   }
 
-  await mongoose.connect(process.env.MONGO_URL);
+  await mongoose.connect(process.env.MONGO_URI);
 
   const [admin, memberOne, memberTwo] = await Promise.all(
     demoUsers.map(createOrUpdateUser)
